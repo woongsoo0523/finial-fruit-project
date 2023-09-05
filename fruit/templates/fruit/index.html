@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>과일 정보 입력</title>
+    <link rel="stylesheet" href="/fruit/styles.css?after">
+</head>
+<body>
+    <header>
+        <h1>과일 정보 입력</h1>
+        <div class="sign">
+            <br>
+            {% if user.is_authenticated %}
+                <p>안녕하세요, {{ user.username }}님</p>  <!-- 로그인 상태에서 사용자명 표시 -->
+                <p><a href="{% url 'fruit:logout' %}">로그아웃</a></p>
+            {% else %}
+                <p><a href="{% url 'fruit:login' %}">로그인</a></p>
+            {% endif%}
+        </div>
+        <div id="header">
+            <div class="container">
+                <a href="{% url 'fruit:index'%}">Home</a>
+                <a href="{% if user.is_authenticated %}{% url 'fruit:fruitlist' %}{% else %}#{% endif %}">List</a>
+            </div>
+    </header>
+<div class="content">
+<form action="{% url 'fruit:upload' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        수확 년도 : <input type="number" name="year" min="2016" max="2023" title="(2016~2023)년도만 입력하세요 " required>
+        <br>
+        수확 월 : <input type="number" name="month" min="1" max="12" title="1~12 사이의 숫자만 입력하세요" required>
+        <br>
+        수확 일 : <input type="number" name="day" min="1" max="31" title="1~31 사이의 숫자만 입력하세요" required>
+        <br>
+        과일 이미지 : <input class="form-control form-control-lg" id="formFileLg" type="file" name="imgfiles" enctype='multipart/form-data' required>
+        <br>
+        <input type="submit" value="클릭">
+</form>
+</div> 
+<footer class="footer">
+    <div>
+        <span>이름: 김건일</span><br>
+        <span>이메일: laughsi@naver.com</span><br>
+        <span>전화번호: 010-8937-2752</span> 
+    </div>
+    <div>
+        <span>이름: 김세연</span><br>
+        <span>이메일: pavv150@naver.com </span><br>
+        <span>전화번호: 010-8933-6010</span> 
+    </div>
+    <div>
+        <span>이름: 윤웅수</span><br>
+        <span>이메일: woong_soo@daum.net</span><br>
+        <span>전화번호: 010-6231-9440</span>
+    </div>
+    <div>
+        <span>이름: 황성연</span><br>
+        <span>이메일: tjddus693@naver.com</span><br>
+        <span>전화번호: 010-7767-7673</span> 
+    </div>
+</footer>
+</body>
+</html>

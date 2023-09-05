@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>detail2</title>
+    <link rel="stylesheet" href="/fruit/styles.css?after">
+</head>
+<body>
+    <header>
+        <h1>과일 상세 정보</h1>
+        <div class="container">
+            <a href="{% url 'fruit:index'%}">Home</a>
+            <a href="{% url 'fruit:fruitlist'%}">List</a>
+        </div>
+    </header>
+    <div class="content">
+    <center class="centerclass">
+        <img src="/{{fruitimg}}" alt="img" class="listimg">
+    <br>
+    등록일 : {{ymd.regdate}}
+    <br>
+    예측했던 과일 : {{fruitresult.fruitresult}}
+    <br>
+    입력했던 날짜 : {{ymd.year}}년{{ymd.month}}월{{ymd.day}}일
+    <br>
+    당도 : {{sugar1.sugar}} brix(당도)
+    <br>
+    </center>
+    </div>
+    <input type="button" value="뒤로 가기" onclick="location.href='{% url 'fruit:fruitlist' %}'">
+    <footer class="footer">
+        <div>
+            <span>이름: 김건일</span><br>
+            <span>이메일: laughsi@naver.com</span><br>
+            <span>전화번호: 010-8937-2752</span> 
+        </div>
+        <div>
+            <span>이름: 김세연</span><br>
+            <span>이메일: pavv150@naver.com </span><br>
+            <span>전화번호: 010-8933-6010</span> 
+        </div>
+        <div>
+            <span>이름: 윤웅수</span><br>
+            <span>이메일: woong_soo@daum.net</span><br>
+            <span>전화번호: 010-6231-9440</span>
+        </div>
+        <div>
+            <span>이름: 황성연</span><br>
+            <span>이메일: tjddus693@naver.com</span><br>
+            <span>전화번호: 010-7767-7673</span> 
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list</title>
+    <link rel="stylesheet" href="/fruit/styles.css?after">
+</head>
+<body>
+    <header>
+        <h1>과일 정보 리스트</h1>
+        <div class="container">
+            <a href="{% url 'fruit:index'%}">Home</a>
+            <a href="{% url 'fruit:fruitlist'%}">List</a>
+        </div>
+    </header>
+    <div class="content">
+        {% if fruit_li %}
+            <ol>
+                {% for f in fruit_li %}
+                    <li>
+                        <center class="centerclass">
+                            <a href="{% url 'fruit:detail2' f.id %}" ><img class="listimg" src="/{{ f.img }}" alt="img"></a>
+                            {{ forloop.counter }}. {{f.year}}년 {{f.month}}월 {{f.day}}일
+                        </center>
+                        <form action="{% url 'fruit:delete' f.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="submit" value="삭제" >
+                        </form>
+                    </li>
+                {% endfor %}
+            </ol>
+        {% else %}
+            <p>목록이 없습니다.</p>
+        {% endif %}
+        <hr>
+        <form method="post" >
+            {% csrf_token %}
+            <input type="button" value="추가하기" onclick="location.href='{% url 'fruit:index' %}'">
+        </form>
+    </div>
+    <footer class="footer">
+        <div>
+            <span>이름: 김건일</span><br>
+            <span>이메일: laughsi@naver.com</span><br>
+            <span>전화번호: 010-8937-2752</span> 
+        </div>
+        <div>
+            <span>이름: 김세연</span><br>
+            <span>이메일: pavv150@naver.com </span><br>
+            <span>전화번호: 010-8933-6010</span> 
+        </div>
+        <div>
+            <span>이름: 윤웅수</span><br>
+            <span>이메일: woong_soo@daum.net</span><br>
+            <span>전화번호: 010-6231-9440</span>
+        </div>
+        <div>
+            <span>이름: 황성연</span><br>
+            <span>이메일: tjddus693@naver.com</span><br>
+            <span>전화번호: 010-7767-7673</span> 
+        </div>
+    </footer>
+</body>
+</html>
